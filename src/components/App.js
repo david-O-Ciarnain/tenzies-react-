@@ -17,11 +17,15 @@ export default function App(){
     }
     const dice = diceNumbers.map(dice => <Dice value={dice}/> )
 
+    function rollDice(){
+        setDiceNumbers(allNewDice)
+    }
     return(
         <main className="main-body">
             <div className="dice-container">
            {dice}
             </div>
+            <button onClick={rollDice} className="role-dice-botton">roll</button>
         </main>
     )
 }
