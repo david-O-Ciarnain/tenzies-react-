@@ -6,17 +6,34 @@
 
 body{
 background-color:#9B4868;
-padding:40px;
+padding:30px;
 position: absolute;
 width: 100%;
 
 }
 .main-body{
 
-    background-color: #f5f5f5;
+    background-color: #d0d0d0;
     display: flex;
     justify-content:center;
     align-items: center;
     height: 90Vh;
     border-radius:10px;
+}
+.dice-container{
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    gap:20px;
+    padding:20px;
+}
+.dice{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    width:10vw;
+    border-radius:10px;
+    background-color: #fff;
+    font-size: 5vw;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, .15);
 }
