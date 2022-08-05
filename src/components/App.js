@@ -11,11 +11,11 @@ export default function App(){
         
         for(let i = 0; i < 15; i++){
             let radnomNumber = Math.floor(Math.random() * 6) + 1
-            randomNumbersArray.push(radnomNumber)
+            randomNumbersArray.push({value:radnomNumber, isHeld:false})
         }
         return randomNumbersArray
     }
-    const dice = diceNumbers.map(dice => <Dice value={dice}/> )
+    const dice = diceNumbers.map(dice => <Dice value={dice.value}/> )
 
     function rollDice(){
         setDiceNumbers(allNewDice)
@@ -25,7 +25,7 @@ export default function App(){
             <div className="dice-container">
            {dice}
             </div>
-            <button onClick={rollDice} className="role-dice-botton">roll</button>
+            <button onClick={rollDice} className="role-dice-button">roll</button>
         </main>
     )
 }
