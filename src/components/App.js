@@ -12,10 +12,13 @@ export default function App(){
         
         for(let i = 0; i < 15; i++){
             let radnomNumber = Math.floor(Math.random() * 6) + 1
-            randomNumbersArray.push({
+            randomNumbersArray.push(
+            {
                 value:radnomNumber, 
                 isHeld:false,
-            id:nanoid()})
+                id:nanoid()
+            }
+                )
         }
         return randomNumbersArray
     }
