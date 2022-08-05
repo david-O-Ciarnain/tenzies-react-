@@ -23,7 +23,7 @@ width: 100%;
 .dice-container{
     display: grid;
     grid-template-columns: auto auto auto auto auto;
-    gap:20px;
+    gap:35px;
     padding:20px;
 }
 .dice{
@@ -36,4 +36,5 @@ width: 100%;
     background-color: #fff;
     font-size: 5vw;
     box-shadow: 0 4px 4px rgba(0, 0, 0, .15);
+    cursor: pointer;
 }
