@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import Dice from "./Dice"
+import { nanoid } from "nanoid"
 
 export default function App(){
 
@@ -11,11 +12,15 @@ export default function App(){
         
         for(let i = 0; i < 15; i++){
             let radnomNumber = Math.floor(Math.random() * 6) + 1
-            randomNumbersArray.push({value:radnomNumber, isHeld:false})
+            randomNumbersArray.push({
+                value:radnomNumber, 
+                isHeld:false,
+            id:nanoid()})
         }
         return randomNumbersArray
     }
-    const dice = diceNumbers.map(dice => <Dice value={dice.value}/> )
+
+    const dice = diceNumbers.map(dice => <Dice key={dice.id} value={dice.value}/> )
 
     function rollDice(){
         setDiceNumbers(allNewDice)
