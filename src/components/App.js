@@ -1,12 +1,27 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import Dice from "./Dice"
 import { nanoid } from "nanoid"
 
 export default function App(){
 
-    const [diceNumbers,setDiceNumbers] = useState(allNewDice)
-    const[numberRols,setNumverRols] = useState(0)
+    const [dices,setDices] = useState(allNewDice)
+    const [tenzies,setTenzies] = useState(false)
+    const[numberRols,setNumberRols] = useState(0)
 
+//check winning conditions  
+    useEffect(() => {
+     const allIsHeld =  dices.every((dice)=> dice.isHeld)
+     const firstNumberInDices = dices[0].value;
+     const allValueEqual = dices.every((dice) => dice.value === firstNumberInDices)
+
+     if(allIsHeld && allValueEqual){
+        setTenzies(true)
+        console.log("You win")
+     }
+    },[dices])
+
+
+    //Helper function 
     function generateRandomDiceValue(){
         let radnomNumber = Math.floor(Math.random() * 6) + 1
         return {
@@ -16,7 +31,7 @@ export default function App(){
         }
     }
     
-
+//create new "dice" with random values 
     function allNewDice(){
         const randomNumbersArray = []
         for(let i = 0; i < 15; i++){
@@ -25,20 +40,20 @@ export default function App(){
         return randomNumbersArray
     }
 
-
+//change isheld to true or false 
     function holdDice(id){
-        setDiceNumbers(prevDiceNumbers => 
+        setDices(prevDiceNumbers => 
             prevDiceNumbers.map(dice => id === dice.id ?
                  {...dice, isHeld: !dice.isHeld}: dice))
     }
 
-
+//create new sett of dice and skips dice if isHeld is true 
     function rollDice(){
-        setDiceNumbers(prevDice => prevDice.map(dice => dice.isHeld ? dice : generateRandomDiceValue()))
-        setNumverRols(prevRols => prevRols + 1)
+        setDices(prevDice => prevDice.map(dice => dice.isHeld ? dice : generateRandomDiceValue()))
+        setNumberRols(prevRols => prevRols + 1)
     }
 
-    const dice = diceNumbers.map(dice => <Dice 
+    const dice = dices.map(dice => <Dice 
         key={dice.id}
         value={dice.value}
          isHeld={dice.isHeld}
