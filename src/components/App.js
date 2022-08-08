@@ -22,12 +22,13 @@ export default function App(){
         return randomNumbersArray
     }
     function holdDice(id){
-        console.log(id)
+        setDiceNumbers(prevDiceNumbers => 
+            prevDiceNumbers.map(dice => id === dice.id ?
+                 {...dice, isHeld: !dice.isHeld}: dice))
     }
 
     const dice = diceNumbers.map(dice => <Dice 
-        key={dice.id} 
-        
+        key={dice.id}
         value={dice.value}
          isHeld={dice.isHeld}
          hold={() => holdDice(dice.id)}
