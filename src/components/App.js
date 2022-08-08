@@ -17,8 +17,7 @@ export default function App(){
                 value:radnomNumber, 
                 isHeld:false,
                 id:nanoid()
-            }
-                )
+            })
         }
         return randomNumbersArray
     }
