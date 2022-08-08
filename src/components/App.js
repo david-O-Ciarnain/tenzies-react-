@@ -50,7 +50,17 @@ export default function App(){
 
 //create new sett of dice and skips dice if isHeld is true 
     function rollDice(){
-        setDices(prevDice => prevDice.map(dice => dice.isHeld ? dice : generateRandomDiceValue()))
+        setDices(prevDice => prevDice.map(dice => {
+            
+            if(tenzies){
+                setTenzies(false)
+                setNumberRols(0)
+                return generateRandomDiceValue()
+            }
+
+           return dice.isHeld ? dice : generateRandomDiceValue()}))
+
+
         setNumberRols(prevRols => prevRols + 1)
     }
 
