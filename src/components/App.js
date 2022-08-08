@@ -15,14 +15,14 @@ export default function App(){
             randomNumbersArray.push(
             {
                 value:radnomNumber, 
-                isHeld:false,
+                isHeld:true,
                 id:nanoid()
             })
         }
         return randomNumbersArray
     }
 
-    const dice = diceNumbers.map(dice => <Dice key={dice.id} value={dice.value}/> )
+    const dice = diceNumbers.map(dice => <Dice key={dice.id} value={dice.value} isHeld={dice.isHeld}/> )
 
     function rollDice(){
         setDiceNumbers(allNewDice)

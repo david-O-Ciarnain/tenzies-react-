@@ -38,6 +38,7 @@ width: 100%;
     font-size: 5vw;
     box-shadow: 0 4px 4px rgba(0, 0, 0, .15);
     cursor: pointer;
+    
 }
 .role-dice-button{
 margin-top: 1em;
@@ -48,6 +49,7 @@ border-radius: 5px;
 background-color: #d5d5d5;
 cursor: pointer;
 font-size: xx-large;
+box-shadow: 0 4px 4px rgba(0, 0, 0, .15);
 }
 .role-dice-button:focus{
     outline: none;
