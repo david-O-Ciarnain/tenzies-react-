@@ -6,25 +6,34 @@ export default function App(){
 
     const [diceNumbers,setDiceNumbers] = useState(allNewDice)
 
+    function generateRandomDiceValue(){
+        let radnomNumber = Math.floor(Math.random() * 6) + 1
+        return {
+            value:radnomNumber, 
+            isHeld:false,
+            id:nanoid()
+        }
+    }
+    
     
     function allNewDice(){
         const randomNumbersArray = []
-        
         for(let i = 0; i < 10; i++){
-            let radnomNumber = Math.floor(Math.random() * 6) + 1
-            randomNumbersArray.push(
-            {
-                value:radnomNumber, 
-                isHeld:false,
-                id:nanoid()
-            })
+            randomNumbersArray.push(generateRandomDiceValue())
         }
         return randomNumbersArray
     }
+
+
     function holdDice(id){
         setDiceNumbers(prevDiceNumbers => 
             prevDiceNumbers.map(dice => id === dice.id ?
                  {...dice, isHeld: !dice.isHeld}: dice))
+    }
+
+
+    function rollDice(){
+        setDiceNumbers(prevDice => prevDice.map(dice => dice.isHeld ? dice : generateRandomDiceValue()))
     }
 
     const dice = diceNumbers.map(dice => <Dice 
@@ -34,9 +43,8 @@ export default function App(){
          hold={() => holdDice(dice.id)}
          /> )
 
-    function rollDice(){
-        setDiceNumbers(allNewDice)
-    }
+   
+
     return(
         <main className="main-body">
             <div className="dice-container">
