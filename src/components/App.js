@@ -9,7 +9,7 @@ export default function App(){
     const [tenzies,setTenzies] = useState(false)
 
     //wants too make these states as an object instead of 2 separate state
-    const[score,setScore] = useState(0)
+    const[highScore,setHighScore] = useState(localStorage.getItem("highScore"))
     const[currentRoll, setCurrentRoll] = useState(0)
 
 //check winning conditions  
@@ -23,7 +23,12 @@ export default function App(){
      }
     },[dices])
 
+    //save highscore in localStorage 
+    useEffect(() =>{
+        localStorage.setItem("highScore", highScore)
+    },[tenzies])
     
+
 
     //Helper function 
     function generateRandomDiceValue(){
@@ -58,7 +63,7 @@ export default function App(){
             if(tenzies){
                 setTenzies(false)
                 // update highscore if there is a new lowest score 
-                setScore(prevScore => prevScore > currentRoll ? currentRoll : prevScore)
+                setHighScore(prevScore => prevScore > currentRoll ? currentRoll : prevScore)
                 setCurrentRoll(0)
             
 
@@ -69,7 +74,7 @@ export default function App(){
 
             // keeps score and update high score if highscore is 0 
        setCurrentRoll(prevRoll => { 
-        setScore(prevScore => prevScore < prevRoll ? prevRoll : prevScore)
+        setHighScore(prevScore => prevScore < prevRoll ? prevRoll : prevScore)
         return prevRoll + 1
     })
     }
@@ -88,7 +93,7 @@ export default function App(){
         <main className="main-body">
             {tenzies && <Confetti />}
             <h1 className="number-rols">Roles: {currentRoll}</h1>
-            <h1 className="highscore">HighScore: {score}</h1>
+            <h1 className="highscore">HighScore: {highScore}</h1>
               <h1 className="title">Tenzies</h1>
             <p className="instructions">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
             <div className="dice-container">
