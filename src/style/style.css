@@ -20,21 +20,27 @@ width: 100%;
     align-items: center;
     height: 90Vh;
     border-radius:10px;
+    
 }
 .number-rols{
     position: relative;
     left: 40%;
 }
+.highscore{
+    position: relative;
+    right: 35%;
+    top: -5%;
+}
 .title {
     font-size: 40px;
-    margin: 10px;
+    
 }
 
 .instructions {
     font-family: 'Inter', sans-serif;
     font-weight: 400;
     width: 50%;
-    margin: 25px;
+    margin: 0.75em;
     text-align: center;
 }
 
@@ -58,7 +64,7 @@ width: 100%;
     
 }
 .role-dice-button{
-margin-top: 1em;
+margin-top: 0.25em;
 width: 15%;
 height: 10%;
 border: none;
