@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react"
 import Dice from "./Dice"
+import Header from "./Header"
+import Instructions from "./Instructions"
 import { nanoid } from "nanoid"
 import Confetti from "react-confetti"
 
@@ -65,8 +67,6 @@ export default function App(){
                 // update highscore if there is a new lowest score 
                 setHighScore(prevScore => prevScore > currentRoll ? currentRoll : prevScore)
                 setCurrentRoll(0)
-            
-
                 return generateRandomDiceValue()
             }
 
@@ -92,10 +92,12 @@ export default function App(){
     return(
         <main className="main-body">
             {tenzies && <Confetti />}
-            <h1 className="number-rols">Roles: {currentRoll}</h1>
-            <h1 className="highscore">HighScore: {highScore}</h1>
-              <h1 className="title">Tenzies</h1>
-            <p className="instructions">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
+            <Header 
+            roles= {currentRoll}
+            highScore ={highScore}
+            /> 
+            <Instructions />
+            
             <div className="dice-container">
            {dice}
             </div>
