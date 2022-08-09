@@ -11,7 +11,7 @@ export default function App(){
     const [tenzies,setTenzies] = useState(false)
 
     //wants too make these states as an object instead of 2 separate state
-    const[highScore,setHighScore] = useState(localStorage.getItem("highScore"))
+    const[highScore,setHighScore] = useState(20,localStorage.getItem("highScore"))
     const[currentRoll, setCurrentRoll] = useState(0)
 
 //check winning conditions  
@@ -72,9 +72,8 @@ export default function App(){
 
            return dice.isHeld ? dice : generateRandomDiceValue()}))
 
-            // keeps score and update high score if highscore is 0 
        setCurrentRoll(prevRoll => { 
-        setHighScore(prevScore => prevScore < prevRoll ? prevRoll : prevScore)
+
         return prevRoll + 1
     })
     }
