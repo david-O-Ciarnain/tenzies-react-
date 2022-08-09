@@ -7,7 +7,8 @@ export default function App(){
 
     const [dices,setDices] = useState(allNewDice)
     const [tenzies,setTenzies] = useState(false)
-    const[numberRols,setNumberRols] = useState(0)
+    const[score,setScore] = useState(0)
+    const[currentRoll, setCurrentRoll] = useState(0)
 
 //check winning conditions  
     useEffect(() => {
@@ -17,7 +18,6 @@ export default function App(){
 
      if(allIsHeld && allValueEqual){
         setTenzies(true)
-        console.log("You win")
      }
     },[dices])
 
@@ -54,16 +54,22 @@ export default function App(){
             
             if(tenzies){
                 setTenzies(false)
-                setNumberRols(0)
+                setScore(prevScore => prevScore > currentRoll ? currentRoll : prevScore)
+                setCurrentRoll(0)
+            
+
                 return generateRandomDiceValue()
             }
 
            return dice.isHeld ? dice : generateRandomDiceValue()}))
 
 
-        setNumberRols(prevRols => prevRols + 1)
+       setCurrentRoll(prevRoll => { 
+        setScore(prevScore => prevScore < prevRoll ? prevRoll : prevScore)
+        return prevRoll + 1
+    })
     }
-
+    
     const dice = dices.map(dice => 
     <Dice 
         key={dice.id}
@@ -77,7 +83,8 @@ export default function App(){
     return(
         <main className="main-body">
             {tenzies && <Confetti />}
-            <h1 className="number-rols">roles {numberRols}</h1>
+            <h1 className="number-rols">roles {currentRoll}</h1>
+            <h1>highScore {score}</h1>
               <h1 className="title">Tenzies</h1>
             <p className="instructions">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
             <div className="dice-container">
